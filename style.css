@@ -4,7 +4,7 @@ html, body {
 }
 
 ._hidden {
-    display: none;
+    display: none!important;
 }
 
 .outer-wrapper {
@@ -20,6 +20,15 @@ html, body {
     display: flex;
     justify-content: space-around;
     align-items: stretch;
+}
+
+.wrapper_score {
+    height: 1.5em;
+    justify-content: flex-end;
+}
+
+.scores {
+    margin-right: 1em;
 }
 
 .a, .b, .result, .ok, .error {
@@ -48,8 +57,8 @@ html, body {
     background-color: darkgreen;
 }
 
-.error {
-    background-color: red
+._red {
+    background-color: red;
 }
 
 .ok, .error {
@@ -74,3 +83,24 @@ html, body {
     position: absolute;
     right: 0;
 }
+
+.answer {
+    position: absolute;
+    top: 0;
+    display: flex;
+    height: 100%;
+    justify-content: center;
+    flex-direction: column;
+}
+
+.paranja {
+    position: absolute;
+    top: 0;
+    right: 0;
+    left: 0;
+    bottom: 0;
+    background-color: #333;
+    opacity: 0.6;
+}
+
+

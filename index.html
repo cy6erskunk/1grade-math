@@ -3,26 +3,31 @@
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0">
     <title>считай это</title>
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
     <div class="outer-wrapper">
-        <div class="wrapper">Счёт: <span class="score">0</span></div>
-      <div class="wrapper">
-        <div class="a"></div>
-        <div class="action"></div>
-        <div class="b"></div>
-        <div class="equals">=</div>
-        <div class="result"></div>
-      </div>
-      <div class="wrapper actions">
-        <div class="ok">Правильно</div>
-        <div class="error">Ошибка</div>
-      </div>
+        <div class="wrapper wrapper_score">
+            <div class="scores"><span>Счёт: </span><span class="score">0</span></div>
+        </div>
+        <div class="wrapper wrapper_exercise">
+            <div class="a"></div>
+            <div class="action"></div>
+            <div class="b"></div>
+            <div class="equals">=</div>
+            <div class="result"></div>
+        </div>
+        <div class="wrapper actions">
+            <div class="ok">Правильно</div>
+            <div class="error _red">Ошибка</div>
+        </div>
     </div>
+    <div class="paranja _hidden"></div>
     <img src="iceKingLove.png" class="win-img _hidden">
     <img src="iceKingRage.png" class="lost-img _hidden">
+    <div class="answer _hidden"></div>
     <script type="text/javascript" src="app.js"></script>
 </body>
 </html>

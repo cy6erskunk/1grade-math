@@ -1,40 +1,29 @@
-(function(){
-    var okElem = document.querySelector('.ok');
-    var errorElem = document.querySelector('.error');
-    var winElem = document.querySelector('.win-img');
-    var lostElem = document.querySelector('.lost-img');
-    var scoreElem = document.querySelector('.score');
+(function () {
+    var MAX_VALUE = 15;
+    var HIDE_TIMEOUT = 1000;
 
-    var spoiled = false;
-    var score = 0;
+    var aElem = document.querySelector('.a'),
+        bElem = document.querySelector('.b'),
+        resultElem = document.querySelector('.result'),
+        actionElem = document.querySelector('.action'),
+        okElem = document.querySelector('.ok'),
+        errorElem = document.querySelector('.error'),
+        winElem = document.querySelector('.win-img'),
+        lostElem = document.querySelector('.lost-img'),
+        scoreElem = document.querySelector('.score'),
+        paranjaElem = document.querySelector('.paranja'),
+        answerElem = document.querySelector('.answer');
 
-    function generateExercise(evt) {
-        var MAX_VALUE = 15;
-        var aElem = document.querySelector('.a');
-        var bElem = document.querySelector('.b');
-        var resultElem = document.querySelector('.result');
-        var actionElem = document.querySelector('.action');
+
+    var spoiled = false,
+        correctResult = 0,
+        score = 0;
+
+    function generateExercise() {
 
         var result = Math.floor(Math.random() * MAX_VALUE);
         var a = Math.floor(Math.random() * MAX_VALUE);
         var b = result - a;
-
-        if (evt) {
-            if ((evt.target == errorElem) != spoiled) {
-                lostElem.classList.remove('_hidden');
-                score -= 1;
-                score < 0 && (score = 0);
-
-            } else {
-                winElem.classList.remove('_hidden');
-                score += 1;
-            }
-
-            setTimeout(function () {
-                lostElem.classList.add('_hidden');
-                winElem.classList.add('_hidden');
-            }, 1000);
-        }
 
         scoreElem.innerText = score;
 
@@ -46,16 +35,63 @@
         bElem.innerText = b;
 
         if (spoiled = Math.random() > 0.5) {
+            correctResult = result;
             result += result <= MAX_VALUE/2 ? 1 : -1;
         }
 
         resultElem.innerText = result;
     }
 
-    okElem.addEventListener('click', generateExercise, false);
-    errorElem.addEventListener('click', generateExercise, false);
+    function hideAll() {
+        lostElem.classList.add('_hidden');
+        winElem.classList.add('_hidden');
+        paranjaElem.classList.add('_hidden');
+        answerElem.classList.add('_hidden');
+    }
 
-    document.documentElement
+    /**
+     * @param {Boolean} respnse - indicates whether user agrees with the solution or not
+     */
+    function processResponse(response) {
+        var copy;
+
+        answerElem.innerHTML = '';
+
+        if (response == spoiled) {
+            lostElem.classList.remove('_hidden');
+            score > 0 && (score -= 1);
+            copy = document.querySelector('.wrapper_exercise').cloneNode(true);
+            if (spoiled) {
+                copy.querySelector('.equals').innerHTML = '&ne;';
+                copy.querySelector('.result').classList.add('_red');
+            }
+            answerElem.appendChild(copy);
+            answerElem.classList.remove('_hidden');
+            paranjaElem.classList.remove('_hidden');
+            setTimeout(hideAll, HIDE_TIMEOUT * 10);
+        } else {
+            winElem.classList.remove('_hidden');
+            score += 1;
+            setTimeout(hideAll, HIDE_TIMEOUT);
+        }
+    }
+
+    function okElemClickHandler() {
+        processResponse(true);
+        generateExercise();
+    }
+
+    function errorElemClickHandler() {
+        processResponse(false);
+        generateExercise();
+    }
+
+    okElem.addEventListener('click', okElemClickHandler, false);
+    errorElem.addEventListener('click', errorElemClickHandler, false);
+
+    paranjaElem.addEventListener('click', hideAll, false);
+    answerElem.addEventListener('click', hideAll, false);
+    lostElem.addEventListener('click', hideAll, false);
 
     generateExercise();
 })();
