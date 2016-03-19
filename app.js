@@ -14,8 +14,8 @@
         paranjaElem = document.querySelector('.paranja'),
         answerElem = document.querySelector('.answer');
 
-
     var spoiled = false,
+        hideTimeoutId = null,
         score = 0;
 
     function generateExercise() {
@@ -67,11 +67,11 @@
             answerElem.appendChild(copy);
             answerElem.classList.remove('_hidden');
             paranjaElem.classList.remove('_hidden');
-            setTimeout(hideAll, HIDE_TIMEOUT * 10);
+            hideTimeoutId = setTimeout(hideAll, HIDE_TIMEOUT * 10);
         } else {
             winElem.classList.remove('_hidden');
             score += 1;
-            setTimeout(hideAll, HIDE_TIMEOUT);
+            hideTimeoutId = setTimeout(hideAll, HIDE_TIMEOUT);
         }
     }
 
@@ -91,6 +91,24 @@
     paranjaElem.addEventListener('click', hideAll, false);
     answerElem.addEventListener('click', hideAll, false);
     lostElem.addEventListener('click', hideAll, false);
+
+    document.body.addEventListener('keydown', function (evt) {
+        if (evt.defaultPrevented) {
+            return;
+        }
+
+        if (hideTimeoutId && evt.keyCode === 27) {
+            clearTimeout();
+            hideTimeoutId = null;
+            hideAll();
+        } else if (evt.keyCode == 37) {
+            okElemClickHandler();
+        } else if (evt.keyCode === 39) {
+            errorElemClickHandler();
+        }
+
+        evt.preventDefault();
+    }, true);
 
     generateExercise();
 })();
