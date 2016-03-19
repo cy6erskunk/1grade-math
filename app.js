@@ -16,7 +16,6 @@
 
 
     var spoiled = false,
-        correctResult = 0,
         score = 0;
 
     function generateExercise() {
@@ -34,8 +33,8 @@
         aElem.innerText = a;
         bElem.innerText = b;
 
-        if (spoiled = Math.random() > 0.5) {
-            correctResult = result;
+        spoiled = Math.random() > 0.5;
+        if (spoiled) {
             result += result <= MAX_VALUE/2 ? 1 : -1;
         }
 
