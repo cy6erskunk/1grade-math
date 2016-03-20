@@ -134,3 +134,24 @@ html, body {
     background-color: #333;
     opacity: 0.6;
 }
+
+/* Portrait iphone */
+@media only screen
+  and (min-device-width: 320px)
+  and (max-device-width: 480px)
+  and (-webkit-min-device-pixel-ratio: 2)
+  and (orientation: portrait) {
+    body {
+      font-size: 20px;
+    }
+
+    .answer .wrapper {
+      -webkit-flex-wrap: wrap;
+          -ms-flex-wrap: wrap;
+              flex-wrap: wrap;
+    }
+
+    .win-img, .lost-img {
+      height: 50%;
+    }
+}
