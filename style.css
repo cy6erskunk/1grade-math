@@ -44,7 +44,14 @@ html, body {
     -webkit-justify-content: space-between;
         -ms-flex-pack: justify;
             justify-content: space-between;
-    align-items: center;
+    -webkit-box-align: center;
+    -webkit-align-items: center;
+        -ms-flex-align: center;
+                -ms-grid-row-align: center;
+            align-items: center;
+    -webkit-flex-wrap: nowrap;
+        -ms-flex-wrap: nowrap;
+            flex-wrap: nowrap;
 }
 
 .sound-switch {
@@ -63,7 +70,7 @@ html, body {
 }
 
 .scores {
-    margin-right: 1em;
+    white-space: nowrap;
 }
 
 .a, .b, .result, .ok, .error {
@@ -163,6 +170,19 @@ input[name="max-value"] + label {
 
 input[name="max-value"]:checked + label {
     border: 2px solid darkgreen;
+}
+
+.max-value-switch {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-flex-wrap: wrap;
+      -ms-flex-wrap: wrap;
+          flex-wrap: wrap;
+  -webkit-justify-content: space-around;
+      -ms-flex-pack: distribute;
+          justify-content: space-around;
 }
 
 /* Portrait iphone */
