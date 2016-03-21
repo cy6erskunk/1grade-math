@@ -150,6 +150,21 @@ html, body {
     opacity: 0.6;
 }
 
+input[name="max-value"] {
+  visibility: hidden;
+}
+
+input[name="max-value"] + label {
+    border: 2px solid transparent;
+    border-radius: 5px;
+    padding: 0.3em 0.6em;
+    cursor: pointer;
+}
+
+input[name="max-value"]:checked + label {
+    border: 2px solid darkgreen;
+}
+
 /* Portrait iphone */
 @media only screen
   and (min-device-width: 320px)

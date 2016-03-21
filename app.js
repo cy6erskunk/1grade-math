@@ -1,5 +1,5 @@
 (function () {
-    var MAX_VALUE = 15;
+    var MAX_VALUE = document.querySelector('.max-value-switch input:checked').value || 15;
     var HIDE_TIMEOUT = 1000;
 
     var okAudio = new Audio('sounds/tada.mp3'),
@@ -106,10 +106,6 @@
     soundSwitchElem.addEventListener('click', toggleSound, false);
 
     document.body.addEventListener('keydown', function (evt) {
-        // if (evt.defaultPrevented) {
-        //     return;
-        // }
-
         if (hideTimeoutId && evt.keyCode === 27) {
             clearTimeout();
             hideTimeoutId = null;
@@ -119,11 +115,13 @@
         } else if (evt.keyCode === 39) {
             errorElemClickHandler();
         } else if (evt.keyCode == 83 ) {
-          toggleSound();
+            toggleSound();
         }
-
-        // evt.preventDefault();
     }, true);
+
+    document.querySelector('.max-value-switch').addEventListener('change', function () {
+        MAX_VALUE = Number(document.querySelector('.max-value-switch input:checked').value);
+    }, false);
 
     generateExercise();
 
