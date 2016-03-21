@@ -40,11 +40,26 @@ html, body {
 }
 
 .wrapper_score {
-    height: 1.5em;
-    -webkit-box-pack: end;
-    -webkit-justify-content: flex-end;
-        -ms-flex-pack: end;
-            justify-content: flex-end;
+    -webkit-box-pack: justify;
+    -webkit-justify-content: space-between;
+        -ms-flex-pack: justify;
+            justify-content: space-between;
+    align-items: center;
+}
+
+.sound-switch {
+  padding: 0.5em 1em;
+  font-size: 1.5em;
+  color: darkgreen;
+  cursor: pointer;
+  background-color: #ddd;
+  border: 1px solid #ccc;
+  border-radius: 5px
+}
+
+.sound-switch_disabled {
+  color: #eee;
+  background-color: #ccc;
 }
 
 .scores {

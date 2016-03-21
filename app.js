@@ -2,6 +2,9 @@
     var MAX_VALUE = 15;
     var HIDE_TIMEOUT = 1000;
 
+    var okAudio = new Audio('sounds/tada.mp3'),
+        failAudio = new Audio('sounds/bzz.mp3');
+
     var aElem = document.querySelector('.a'),
         bElem = document.querySelector('.b'),
         resultElem = document.querySelector('.result'),
@@ -12,9 +15,11 @@
         lostElem = document.querySelector('.lost-img'),
         scoreElem = document.querySelector('.score'),
         paranjaElem = document.querySelector('.paranja'),
-        answerElem = document.querySelector('.answer');
+        answerElem = document.querySelector('.answer'),
+        soundSwitchElem = document.querySelector('.sound-switch');
 
     var spoiled = false,
+        soundEnabled = true,
         hideTimeoutId = null,
         score = 0;
 
@@ -68,10 +73,12 @@
             answerElem.classList.remove('_hidden');
             paranjaElem.classList.remove('_hidden');
             hideTimeoutId = setTimeout(hideAll, HIDE_TIMEOUT * 10);
+            soundEnabled && failAudio.play();
         } else {
             winElem.classList.remove('_hidden');
             score += 1;
             hideTimeoutId = setTimeout(hideAll, HIDE_TIMEOUT);
+            soundEnabled && okAudio.play();
         }
     }
 
@@ -85,17 +92,23 @@
         generateExercise();
     }
 
+    function toggleSound() {
+        soundEnabled = !soundEnabled;
+        soundSwitchElem.classList[soundEnabled ? 'remove' : 'add']('sound-switch_disabled');
+    }
+
     okElem.addEventListener('click', okElemClickHandler, false);
     errorElem.addEventListener('click', errorElemClickHandler, false);
 
     paranjaElem.addEventListener('click', hideAll, false);
     answerElem.addEventListener('click', hideAll, false);
     lostElem.addEventListener('click', hideAll, false);
+    soundSwitchElem.addEventListener('click', toggleSound, false);
 
     document.body.addEventListener('keydown', function (evt) {
-        if (evt.defaultPrevented) {
-            return;
-        }
+        // if (evt.defaultPrevented) {
+        //     return;
+        // }
 
         if (hideTimeoutId && evt.keyCode === 27) {
             clearTimeout();
@@ -105,10 +118,13 @@
             okElemClickHandler();
         } else if (evt.keyCode === 39) {
             errorElemClickHandler();
+        } else if (evt.keyCode == 83 ) {
+          toggleSound();
         }
 
-        evt.preventDefault();
+        // evt.preventDefault();
     }, true);
 
     generateExercise();
+
 })();

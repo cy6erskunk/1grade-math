@@ -1,0 +1,26 @@
+{
+  "name": "first-grade-math",
+  "version": "1.0.0",
+  "description": "basic arithmetic trainer",
+  "main": "app.js",
+  "dependencies": {
+    "autoprefixer": "^6.3.3",
+    "autoprefixer-cli": "^1.0.0"
+  },
+  "devDependencies": {
+    "eslint": "^2.4.0"
+  },
+  "scripts": {
+    "test": ""
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/cy6erskunk/1grade-math.git"
+  },
+  "author": "",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/cy6erskunk/1grade-math/issues"
+  },
+  "homepage": "https://github.com/cy6erskunk/1grade-math#readme"
+}
