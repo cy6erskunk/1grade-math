@@ -1,5 +1,5 @@
 html, body {
-  font: 40px Tahoma, sans-serif;
+  font: 40px sans-serif;
   height: 100%;
 }
 
@@ -24,8 +24,6 @@ html, body {
 }
 
 .wrapper {
-    width: 100%;
-    height: 3em;
     display: -webkit-box;
     display: -webkit-flex;
     display: -ms-flexbox;
@@ -80,10 +78,6 @@ html, body {
     border-radius: 5px;
 }
 
-.a, .b, .result {
-    width: 3em;
-}
-
 .action, .equals {
     text-align: center;
     -webkit-align-self: center;
@@ -94,7 +88,14 @@ html, body {
 }
 
 .a, .b, .result {
+    width: 3em;
     background-color: lightblue;
+    -webkit-flex-shrink: 2;
+        -ms-flex-negative: 2;
+            flex-shrink: 2;
+    -webkit-flex-basis: auto;
+        -ms-flex-preferred-size: auto;
+            flex-basis: auto;
 }
 
 .ok {
@@ -158,7 +159,7 @@ html, body {
 }
 
 input[name="max-value"] {
-  visibility: hidden;
+  display: none;
 }
 
 input[name="max-value"] + label {
@@ -187,12 +188,14 @@ input[name="max-value"]:checked + label {
 
 /* Portrait iphone */
 @media only screen
-  and (min-device-width: 320px)
   and (max-device-width: 480px)
-  and (-webkit-min-device-pixel-ratio: 2)
-  and (orientation: portrait) {
+  and (-webkit-min-device-pixel-ratio: 2) {
     body {
       font-size: 20px;
+    }
+
+    .scores {
+        white-space: normal;
     }
 
     .answer .wrapper {
