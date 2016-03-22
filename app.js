@@ -121,6 +121,7 @@
 
     document.querySelector('.max-value-switch').addEventListener('change', function () {
         MAX_VALUE = Number(document.querySelector('.max-value-switch input:checked').value);
+        generateExercise();
     }, false);
 
     generateExercise();
