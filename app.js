@@ -126,4 +126,23 @@
 
     generateExercise();
 
+
+
+    (function () {
+        /* eslint-disable no-console*/
+        /** basic serviceWorker playing **/
+        if ('serviceWorker' in navigator) {
+            navigator.serviceWorker
+                .register('./service-worker.js', { scope: './' })
+                .then(function (registration) {
+                    console.log('ServiceWorker registered', registration);
+                })
+                .catch(function (err) {
+                    console.log('ServiceWorker failed to register', err);
+                });
+        } else {
+            console.log('serviceWorker is not supported here, sorry...');
+        }
+        /* eslint-enable no-console */
+    })();
 })();
