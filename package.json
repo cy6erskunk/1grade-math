@@ -3,12 +3,10 @@
   "version": "1.0.0",
   "description": "basic arithmetic trainer",
   "main": "app.js",
-  "dependencies": {
-    "autoprefixer": "^6.3.3",
-    "autoprefixer-cli": "^1.0.0"
-  },
   "devDependencies": {
-    "eslint": "^2.4.0"
+    "autoprefixer": "9.6.1",
+    "autoprefixer-cli": "1.0.0",
+    "eslint": "6.0.1"
   },
   "scripts": {
     "test": ""
